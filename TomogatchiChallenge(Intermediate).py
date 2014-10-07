@@ -3,10 +3,11 @@ import time
 
 class Tomogatchi():
     def __init__(self):
+        self.good = False
         self.dead = False
         self.maxAge = random.randint(500,1000)
         self.age = 0
-        self.happiness = (random.randint(45,55))+"%"
+        self.happiness = (random.randint(45,55))
         self.hunger = 0
         self.poison = 0
         self.poopCount = 0
@@ -30,7 +31,7 @@ class Tomogatchi():
             else:
                 self.hunger+=10
         else:
-            self.hunger+=1
+            self.hunger+=4
     
     def play(self):
         print("Tomogatchi loves to play!")
@@ -53,14 +54,14 @@ class Tomogatchi():
             print("Tomogatchi is too sad. \n Tomogatchi commits suicide and dies.")
         elif(self.age>self.maxAge):
             death = True
-            good = True
-            print("Tomogatchi dies after a good long life at the age of "+self.age)
+            self.good = True
+            print("Tomogatchi dies after a good long life at the age of ",self.age)
         elif(self.hunger<-100):
             death = True
             print("Tomogatchi gets diabetes, explodes, and dies.")
         if(death):
             print("Tomogatchi is dead.")
-            if(good):
+            if(self.good):
                 print("You Win!")
             else:
                 print("Game Over")
@@ -68,25 +69,34 @@ class Tomogatchi():
     
     def digest(self):
         self.eat()
-        self.happiness-=1
+        self.happiness-=random.randint(0,10)
         if(self.poison>0): self.poison-=1
         self.age+=1
-        if(self.age % 20 == 0):
+        if(self.age % 15 == 0):
             self.poopCount+=1
             print("Tomogatchi takes a poop.")
         self.deathCheck()
         
     def __str__(self):
-        return "\nTomogatchi\n"+"----------"+"Age: "+self.age+"\n"+"Hunger: "+self.hunger+"\n"+"Happiness: "+self.happiness+"\n"+"Poison Lvl: "+self.poison+"\n"+"Poop Count: "+self.poopCount+"\n"
+        ret = "\nTomogatchi\n"+"----------"+"Age: "
+        ret+= str(self.age)+"\n"+"Hunger: "
+        ret+= str(self.hunger)+"\n"+"Happiness: "
+        ret+= str(self.happiness)+"\n"+"Poison Lvl: "
+        ret+= str(self.poison)+"\n"+"Poop Count: "
+        ret+= str(self.poopCount)+"\n"
+        return ret
 
 def main():
     tomo = Tomogatchi()
     lastTime = time.time()
     while(not tomo.dead):
-        if(time.time()-lastTime>5):
-            tomo.digest()
+        if(time.time()-lastTime>3):
+            for i in range(int((time.time()-lastTime)/3)):
+                 tomo.digest()
             lastTime = time.time()
-        inp = raw_input("What would you like to do? (feed, play, clean, status)")
+        inp = "status"
+        if(not tomo.dead):
+             inp = input("What would you like to do? (feed, play, clean, status)")
         if(inp=="feed"):
             tomo.feed()
         elif(inp=="play"):
@@ -95,3 +105,5 @@ def main():
             tomo.clean()
         elif(inp=="status"):
             print(tomo)
+
+main()
