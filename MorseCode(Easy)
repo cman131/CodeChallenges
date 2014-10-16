@@ -26,3 +26,10 @@ code = {
 	'Y'=>'-.--',
 	'Z'=>'--..'
 }
+
+word = ARGV[0]
+result = ""
+word.each_char do |ch|
+	result+=code[ch.upcase]+" "
+end
+puts result
