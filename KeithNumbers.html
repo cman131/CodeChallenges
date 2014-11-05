@@ -13,7 +13,7 @@
 			all.splice(0,1);
 			all.push(curNum);
 		}
-		if(curNum==parseInt(num)){
+		if(curNum==parseInt(num) && all.length>1){
 			document.getElementById("result").innerHTML = "<b style='color: green;'>Yes</b>";
 			return true;
 		}
