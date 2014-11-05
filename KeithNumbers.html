@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Is my number a keith number?</title>
+<script>
+	function isKeith(num){
+		num = parseInt(num);
+		curNum = 0;
+		var all = num.split("");
+		while(curNum<parseInt(num)){
+			curNum = 0;
+			for(var i = 0; i<all.length; i++){
+				curNum+=parseInt(all[i]);
+			}
+			all.splice(0,1);
+			all.push(curNum);
+		}
+		if(curNum==parseInt(num)){
+			return true;
+		}
+		return false;
+	}
+</script>
+</head>
+<body>
+	<h1>Is it a Keith Number?</h1><br>
+	<input type="text" id="inp">
+	<input type="button" onclick="isKeith(document.getElementById('inp').value)">
+	<br><h2 id="result"></h2>
+</body>
+</html>
