@@ -26,3 +26,12 @@ code = {
 	'Y'=>'-.--',
 	'Z'=>'--..'
 }
+
+word = ARGV[0]
+result = ""
+word.each_char do |ch|
+	if ch.match(/^[[:alpha:]]$/)
+		result+=code[ch.upcase]+" "
+	end
+end
+puts result
