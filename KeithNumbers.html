@@ -15,8 +15,10 @@
 			all.push(curNum);
 		}
 		if(curNum==parseInt(num)){
+			document.getElementById("result").innerHTML = "<b style='color: green;'>Yes</b>";
 			return true;
 		}
+		document.getElementById("result").innerHTML = "<b style='color: red;'>Nah, Nah, Brah</b>";
 		return false;
 	}
 </script>
