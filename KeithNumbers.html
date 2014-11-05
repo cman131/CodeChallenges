@@ -24,8 +24,8 @@
 </head>
 <body>
 	<h1>Is it a Keith Number?</h1><br>
-	<input type="text" id="inp">
-	<input type="button" onclick="isKeith(document.getElementById('inp').value)">
+	<input type="text" onkeypress="if(event.which===13){document.getElementById('butt').click();}" id="inp">
+	<input type="button" onclick="isKeith(document.getElementById('inp').value)" id="butt">
 	<br><h2 id="result"></h2>
 </body>
 </html>
