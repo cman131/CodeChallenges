@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Is my number a keith number?</title>
+<script>
+	function isKeith(num){
+		curNum = 0;
+		var all = num.split("");
+		while(curNum<parseInt(num)){
+			curNum = 0;
+			for(var i = 0; i<all.length; i++){
+				curNum+=parseInt(all[i]);
+			}
+			all.splice(0,1);
+			all.push(curNum);
+		}
+		if(curNum==parseInt(num) && all.length>1){
+			document.getElementById("result").innerHTML = "<b style='color: green;'>Yes</b>";
+			return true;
+		}
+		document.getElementById("result").innerHTML = "<b style='color: red;'>Nah, Nah, Brah</b>";
+		return false;
+	}
+</script>
+</head>
+<body>
+	<h1>Is it a Keith Number?</h1><br>
+	<input type="text" onkeypress="if(event.which===13){document.getElementById('butt').click();}" id="inp">
+	<input type="button" value="Check" onclick="isKeith(document.getElementById('inp').value)" id="butt">
+	<br><h2 id="result"></h2>
+</body>
+</html>
